@@ -16,7 +16,7 @@ public enum TogglePosition {
 public struct ThreeWayToggle<Label : View> : View {
     
     
-    public init(label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat = 150) {
+    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat = 150) {
         self.label = label
         self.onColor = onColor
         self.offColor = offColor
