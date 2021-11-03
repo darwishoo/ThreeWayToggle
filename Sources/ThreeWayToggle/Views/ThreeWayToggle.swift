@@ -15,7 +15,6 @@ public enum TogglePosition {
 
 public struct ThreeWayToggle<Label : View> : View {
     
-    
     public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat? = nil) {
         self._position = position
         self.label = label
@@ -172,6 +171,7 @@ public struct ThreeWayToggle<Label : View> : View {
                         .mask {
                             Text(leftShutter.title).bold()
                                 .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                 }
                 
@@ -183,6 +183,7 @@ public struct ThreeWayToggle<Label : View> : View {
                         .mask {
                             Text(rightShutter.title).bold()
                                 .multilineTextAlignment(.center)
+                                .fixedSize()
                         }
                 }
             }.frame(maxWidth: maxToggleWidth)
