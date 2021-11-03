@@ -9,5 +9,5 @@ import Foundation
 import SwiftUI
 
 public struct Shutter {
-    var title : String
+    public var title : String
 }
