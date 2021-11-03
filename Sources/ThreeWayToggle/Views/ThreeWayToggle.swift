@@ -14,6 +14,19 @@ public enum TogglePosition {
 
 
 public struct ThreeWayToggle<Label : View> : View {
+    
+    
+    public init(label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat = 150) {
+        self.label = label
+        self.onColor = onColor
+        self.offColor = offColor
+        self.baseColor = baseColor
+        self.buttonColor = buttonColor
+        self.leftShutter = leftShutter
+        self.rightShutter = rightShutter
+        self.maxToggleWidth = maxToggleWidth
+    }
+    
      @Binding public var position : TogglePosition {
         didSet {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
