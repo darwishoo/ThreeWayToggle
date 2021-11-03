@@ -168,6 +168,7 @@ public struct ThreeWayToggle<Label : View> : View {
             HStack{
                 if let leftShutter = leftShutter {
                     ShutterView(animationType: .leftToRight, shutterColor: offColor, baseColor:  baseColor, shutterOn: $animateLeftLabel)
+                        .frame(maxWidth: maxToggleWidth)
                         .mask {
                             Text(leftShutter.title).bold()
                                 .multilineTextAlignment(.center)
@@ -180,13 +181,14 @@ public struct ThreeWayToggle<Label : View> : View {
                 
                 if let rightShutter = rightShutter {
                     ShutterView(animationType: .rightToLeft, shutterColor: onColor, baseColor:  baseColor, shutterOn: $animateRightLabel)
+                        .frame(maxWidth: maxToggleWidth)
                         .mask {
                             Text(rightShutter.title).bold()
                                 .multilineTextAlignment(.center)
-                                .fixedSize()
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                 }
-            }.frame(maxWidth: maxToggleWidth)
+            }
             
         }
     }
