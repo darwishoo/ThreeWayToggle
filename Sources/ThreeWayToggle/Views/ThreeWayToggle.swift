@@ -32,7 +32,7 @@ public struct ThreeWayToggle<Label : View> : View {
         }
     }
     
-    @ViewBuilder let label : () -> Label
+    @ViewBuilder public let label : () -> Label
     
     @State private var animateLeftLabel : Bool = false //start animating letft shutter
     @State private var animateRightLabel  : Bool = false //start animating right shutter
@@ -70,11 +70,11 @@ public struct ThreeWayToggle<Label : View> : View {
     
     
     /// - Parameter : use this value to restrict the size of the toggel switch labels on either side
-    var maxToggleWidth : CGFloat = 150
+    public var maxToggleWidth : CGFloat = 150
     
     @State private var buttonWidth : CGFloat = 0
     
-    var fillColor : Color {
+    private var fillColor : Color {
         switch position {
         case .on:
             return onColor
