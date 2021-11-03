@@ -15,7 +15,7 @@ public enum TogglePosition {
 
 public struct ThreeWayToggle<Label : View> : View {
     
-    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat? = nil) {
+    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxShutterWidth: CGFloat? = nil) {
         self._position = position
         self.label = label
         self.onColor = onColor
@@ -24,7 +24,7 @@ public struct ThreeWayToggle<Label : View> : View {
         self.buttonColor = buttonColor
         self.leftShutter = leftShutter
         self.rightShutter = rightShutter
-        self.maxToggleWidth = maxToggleWidth
+        self.maxShutterWidth = maxShutterWidth
     }
     
      @Binding public var position : TogglePosition {
@@ -83,7 +83,7 @@ public struct ThreeWayToggle<Label : View> : View {
     
     
     /// - Parameter : use this value to restrict the size of the toggel switch labels on either side
-    public var maxToggleWidth : CGFloat?
+    public var maxShutterWidth : CGFloat?
     
     @State private var buttonWidth : CGFloat = 0
     
@@ -168,10 +168,11 @@ public struct ThreeWayToggle<Label : View> : View {
             HStack{
                 if let leftShutter = leftShutter {
                     ShutterView(animationType: .leftToRight, shutterColor: offColor, baseColor:  baseColor, shutterOn: $animateLeftLabel)
-                        .frame(maxWidth: maxToggleWidth)
+                        .frame(maxWidth: maxShutterWidth)
                         .mask {
                             Text(leftShutter.title).bold()
                                 .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: true, vertical: false)
                         }
                 }
                 
@@ -180,10 +181,11 @@ public struct ThreeWayToggle<Label : View> : View {
                 
                 if let rightShutter = rightShutter {
                     ShutterView(animationType: .rightToLeft, shutterColor: onColor, baseColor:  baseColor, shutterOn: $animateRightLabel)
-                        .frame(maxWidth: maxToggleWidth)
+                        .frame(maxWidth: maxShutterWidth)
                         .mask {
                             Text(rightShutter.title).bold()
                                 .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: true, vertical: false)
                         }
                 }
             }
