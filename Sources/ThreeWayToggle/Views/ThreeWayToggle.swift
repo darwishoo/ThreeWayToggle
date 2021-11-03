@@ -172,7 +172,6 @@ public struct ThreeWayToggle<Label : View> : View {
                         .mask {
                             Text(leftShutter.title).bold()
                                 .multilineTextAlignment(.center)
-                                .fixedSize(horizontal: false, vertical: true)
                         }
                 }
                 
@@ -185,7 +184,6 @@ public struct ThreeWayToggle<Label : View> : View {
                         .mask {
                             Text(rightShutter.title).bold()
                                 .multilineTextAlignment(.center)
-                                .fixedSize(horizontal: false, vertical: true)
                         }
                 }
             }
