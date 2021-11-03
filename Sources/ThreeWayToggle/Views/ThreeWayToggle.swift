@@ -16,7 +16,7 @@ public enum TogglePosition {
 public struct ThreeWayToggle<Label : View> : View {
     
     
-    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat = 150) {
+    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxToggleWidth: CGFloat? = nil) {
         self._position = position
         self.label = label
         self.onColor = onColor
@@ -84,7 +84,7 @@ public struct ThreeWayToggle<Label : View> : View {
     
     
     /// - Parameter : use this value to restrict the size of the toggel switch labels on either side
-    public var maxToggleWidth : CGFloat = 150
+    public var maxToggleWidth : CGFloat?
     
     @State private var buttonWidth : CGFloat = 0
     
