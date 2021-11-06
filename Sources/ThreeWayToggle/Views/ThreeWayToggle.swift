@@ -15,15 +15,15 @@ public enum TogglePosition {
 
 public struct ThreeWayToggle<Label : View> : View {
     
-    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, leftShutter: Shutter? = nil, rightShutter: Shutter? = nil, maxShutterWidth: CGFloat? = nil) {
+    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, offTitle: String? = nil, onTitle: String? = nil, maxShutterWidth: CGFloat? = nil) {
         self._position = position
         self.label = label
         self.onColor = onColor
         self.offColor = offColor
         self.baseColor = baseColor
         self.buttonColor = buttonColor
-        self.leftShutter = leftShutter
-        self.rightShutter = rightShutter
+        self.offTitle = offTitle
+        self.onTitle = onTitle
         self.maxShutterWidth = maxShutterWidth
     }
     
@@ -77,8 +77,8 @@ public struct ThreeWayToggle<Label : View> : View {
     public var offColor : Color = .red
     public var baseColor : Color = Color(uiColor: .systemGray5)
     public var buttonColor : Color = .white
-    public var leftShutter : Shutter?
-    public var rightShutter : Shutter?
+    public var offTitle : String?
+    public var onTitle : String?
     
     
     
@@ -154,7 +154,7 @@ public struct ThreeWayToggle<Label : View> : View {
                     }
                 }
             }.onEnded({ value in
-                print("drag ended on: \(value.translation.width)")
+    
                 withAnimation {
                     self.buttonWidth = 0
                     animationOffset = 0
@@ -166,11 +166,12 @@ public struct ThreeWayToggle<Label : View> : View {
             label().padding(.leading)
             Spacer()
             HStack{
-                if let leftShutter = leftShutter {
+                if let offTitle = offTitle {
+
                     ShutterView(animationType: .leftToRight, shutterColor: offColor, baseColor:  baseColor, shutterOn: $animateLeftLabel)
                         .frame(maxWidth: maxShutterWidth)
                         .mask {
-                            Text(leftShutter.title).bold()
+                            Text(offTitle).bold()
                                 .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: true, vertical: false)
                         }
@@ -179,11 +180,12 @@ public struct ThreeWayToggle<Label : View> : View {
                 toggleSwitch
                     .zIndex(.infinity)// to keep toggel ontop on labels
                 
-                if let rightShutter = rightShutter {
+                if let onTitle = onTitle {
+
                     ShutterView(animationType: .rightToLeft, shutterColor: onColor, baseColor:  baseColor, shutterOn: $animateRightLabel)
                         .frame(maxWidth: maxShutterWidth)
                         .mask {
-                            Text(rightShutter.title).bold()
+                            Text(onTitle).bold()
                                 .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: true, vertical: false)
                         }
