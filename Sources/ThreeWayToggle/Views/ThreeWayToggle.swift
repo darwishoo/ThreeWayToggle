@@ -16,7 +16,7 @@ public struct ThreeWayToggle<Label : View> : View {
     
 
     
-    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, offTitle: String? = nil, onTitle: String? = nil, maxShutterWidth: CGFloat? = nil) {
+    public init(position: Binding<ThreeWayTogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, offTitle: String? = nil, onTitle: String? = nil, maxShutterWidth: CGFloat? = nil) {
         self._position = position
         self.label = label
         self.onColor = onColor
@@ -28,7 +28,7 @@ public struct ThreeWayToggle<Label : View> : View {
         self.maxShutterWidth = maxShutterWidth
     }
     
-     @Binding public var position : TogglePosition {
+     @Binding public var position : ThreeWayTogglePosition {
         didSet {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             switch position {
