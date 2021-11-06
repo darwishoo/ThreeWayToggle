@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+public enum ThreeWayTogglePosition {
+    case on,off,neutral
+}
+
 
 public struct ThreeWayToggle<Label : View> : View {
     
-    public enum TogglePosition {
-        case on,off,neutral
-    }
+
     
     public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, offTitle: String? = nil, onTitle: String? = nil, maxShutterWidth: CGFloat? = nil) {
         self._position = position
