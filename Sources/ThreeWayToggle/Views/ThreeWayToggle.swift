@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum ThreeWayTogglePosition {
+public enum ThreeWayTogglePosition : String , Codable{
     case on,off,neutral
 }
 
