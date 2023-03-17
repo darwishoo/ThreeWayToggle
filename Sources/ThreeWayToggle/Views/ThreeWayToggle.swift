@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public enum ThreeWayTogglePosition : String , Codable{
+public enum TogglePosition : String , Codable{
     case on,off,neutral
 }
 
@@ -16,7 +16,7 @@ public struct ThreeWayToggle<Label : View> : View {
     
 
     
-    public init(position: Binding<ThreeWayTogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, offTitle: String? = nil, onTitle: String? = nil, maxShutterWidth: CGFloat? = nil) {
+    public init(position: Binding<TogglePosition>, label: @escaping () -> Label, onColor: Color = .green, offColor: Color = .red, baseColor: Color = Color(uiColor: .systemGray5), buttonColor: Color = .white, offTitle: String? = nil, onTitle: String? = nil, maxShutterWidth: CGFloat? = nil) {
         self._position = position
         self.label = label
         self.onColor = onColor
@@ -28,7 +28,7 @@ public struct ThreeWayToggle<Label : View> : View {
         self.maxShutterWidth = maxShutterWidth
     }
     
-     @Binding public var position : ThreeWayTogglePosition {
+     @Binding public var position : TogglePosition {
         didSet {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             switch position {
@@ -169,7 +169,7 @@ public struct ThreeWayToggle<Label : View> : View {
             HStack{
                 if let offTitle = offTitle {
 
-                    ShutterView(animationType: .leftToRight, shutterColor: offColor, baseColor:  baseColor, shutterOn: $animateLeftLabel)
+                    ShutterView(animationDirection: .leftToRight, shutterColor: offColor, baseColor:  baseColor, shutterOn: $animateLeftLabel)
                         .frame(maxWidth: maxShutterWidth)
                         .mask {
                             Text(offTitle).bold()
@@ -179,11 +179,11 @@ public struct ThreeWayToggle<Label : View> : View {
                 }
                 
                 toggleSwitch
-                    .zIndex(.infinity)// to keep toggel ontop on labels
+                    .zIndex(.infinity)// to keep toggel ontop of labels
                 
                 if let onTitle = onTitle {
 
-                    ShutterView(animationType: .rightToLeft, shutterColor: onColor, baseColor:  baseColor, shutterOn: $animateRightLabel)
+                    ShutterView(animationDirection: .rightToLeft, shutterColor: onColor, baseColor:  baseColor, shutterOn: $animateRightLabel)
                         .frame(maxWidth: maxShutterWidth)
                         .mask {
                             Text(onTitle).bold()
@@ -194,5 +194,19 @@ public struct ThreeWayToggle<Label : View> : View {
             }
             
         }
+    }
+}
+
+
+struct ThreeWayTogglePreview : PreviewProvider {
+    
+    @State static var position = TogglePosition.on
+    
+    static var previews: some View {
+
+        ThreeWayToggle(position: $position, label: {
+            Text("Hello Again")
+        }, onColor: .red, offColor: .green, baseColor: .gray, offTitle: "off", onTitle: "on")
+ 
     }
 }

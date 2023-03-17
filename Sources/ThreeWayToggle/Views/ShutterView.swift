@@ -35,12 +35,12 @@ struct ShutterView : View {
     /// Binding value to start shutter animation
     @Binding var shutterOn : Bool
     
-    /// width of the shutter to be set by GeometeryReader on runtime
+    /// width of the shutter to be set by GeometryReader on runtime
     @State private var width : CGFloat = 0
     
-    /// Returns the offset value for the shutter window depeding on animation type
+    /// Returns the offset value for the shutter window depending on animation type
     private var offset : CGFloat {
-        switch animationType {
+        switch animationDirection {
         case .leftToRight :
             return -width
         case .rightToLeft:
@@ -69,7 +69,8 @@ struct ShutterView : View {
 
 
 struct ShutterViewPreview : PreviewProvider {
+    @State static var on : Bool = false
     static var previews: some View {
-        ShutterView(animationType: .rightToLeft, shutterColor: .blue, baseColor: .red, shutterOn: .constant(false))
+        ShutterView(animationDirection: .rightToLeft, shutterColor: .blue, baseColor: .red, shutterOn: $on)
     }
 }
