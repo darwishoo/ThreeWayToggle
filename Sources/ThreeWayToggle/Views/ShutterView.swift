@@ -24,7 +24,7 @@ struct ShutterView : View {
     }
 
     /// Type of shutter animation
-    var animationType : ShutterDirection
+    var animationDirection : ShutterDirection
     
     /// Color of the Shutter View
     var shutterColor : Color
