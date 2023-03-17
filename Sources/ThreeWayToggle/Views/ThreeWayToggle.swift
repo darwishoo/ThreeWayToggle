@@ -179,7 +179,7 @@ public struct ThreeWayToggle<Label : View> : View {
                 }
                 
                 toggleSwitch
-                    .zIndex(.infinity)// to keep toggel ontop on labels
+                    .zIndex(.infinity)// to keep toggel ontop of labels
                 
                 if let onTitle = onTitle {
 
