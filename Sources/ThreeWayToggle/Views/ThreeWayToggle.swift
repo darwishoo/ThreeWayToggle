@@ -8,7 +8,7 @@
 import SwiftUI
 
 public enum TogglePosition : String , Codable{
-    case on,off,neutral
+    case on, off, neutral
 }
 
 
@@ -179,7 +179,7 @@ public struct ThreeWayToggle<Label : View> : View {
                 }
                 
                 toggleSwitch
-                    .zIndex(.infinity)// to keep toggel ontop of labels
+                    .zIndex(.infinity)// to keep toggle on top of labels
                 
                 if let onTitle = onTitle {
 
