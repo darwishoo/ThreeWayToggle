@@ -57,7 +57,9 @@ struct ShutterView : View {
                 ZStack {
                     Rectangle()
                         .foregroundColor(baseColor)
-                    shutterRect
+                        .zIndex(0)
+                   shutterRect
+                        .zIndex(1)
                 }.onAppear {
                     width = geo.size.width
                 }
@@ -71,6 +73,6 @@ struct ShutterView : View {
 struct ShutterViewPreview : PreviewProvider {
     @State static var on : Bool = false
     static var previews: some View {
-        ShutterView(animationDirection: .rightToLeft, shutterColor: .blue, baseColor: .red, shutterOn: $on)
+        ShutterView(animationDirection: .rightToLeft, shutterColor: .blue, baseColor: .gray, shutterOn: $on)
     }
 }

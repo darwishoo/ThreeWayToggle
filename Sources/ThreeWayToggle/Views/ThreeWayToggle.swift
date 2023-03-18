@@ -56,7 +56,7 @@ public struct ThreeWayToggle<Label : View> : View {
     
     private let baseHeight: CGFloat = 30 // height of toggle
     
-    private let stroke: CGFloat = 3
+    private let stroke: CGFloat = 1
     
     private let gap: CGFloat = 1 // gap between the background and foreground
     
@@ -102,7 +102,7 @@ public struct ThreeWayToggle<Label : View> : View {
         }
     }
     
-    @State private var animationOffset : CGFloat = 0 //offset added to keep button inside the paramter when stretched on press
+    @State private var animationOffset : CGFloat = 0 //offset added to keep button inside the parameter when stretched on press
     
     public var body: some View {
         
@@ -116,10 +116,8 @@ public struct ThreeWayToggle<Label : View> : View {
         
         let  toggleSwitch =  Capsule()
             .fill(fillColor)
-            .frame(width: baseWidth, height: baseHeight)
             .shadow(radius: 0.5)
             .overlay(button)
-        
             .frame(width: baseWidth, height: baseHeight)
             .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local).onChanged { value in
                 
