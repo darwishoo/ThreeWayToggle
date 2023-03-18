@@ -48,11 +48,14 @@ public struct ThreeWayToggle<Label : View> : View {
     
     @ViewBuilder public let label : () -> Label
     
-    @State private var animateLeftLabel : Bool = false //start animating letft shutter
+    @State private var animateLeftLabel : Bool = false //start animating left shutter
+    
     @State private var animateRightLabel  : Bool = false //start animating right shutter
     
     private let baseWidth: CGFloat = 60 // width of toggle
+    
     private let baseHeight: CGFloat = 30 // height of toggle
+    
     private let stroke: CGFloat = 3
     
     private let gap: CGFloat = 1 // gap between the background and foreground
@@ -83,7 +86,7 @@ public struct ThreeWayToggle<Label : View> : View {
     
     
     
-    /// - Parameter : use this value to restrict the size of the toggel switch labels on either side
+    /// - Parameter : use this value to restrict the size of the toggle switch labels on either side
     public var maxShutterWidth : CGFloat?
     
     @State private var buttonWidth : CGFloat = 0
@@ -111,12 +114,10 @@ public struct ThreeWayToggle<Label : View> : View {
             .shadow(radius: 1, x: 0 , y: 1)
         
         
-        let  toggleSwitch =  Rectangle()
+        let  toggleSwitch =  Capsule()
             .fill(fillColor)
             .frame(width: baseWidth, height: baseHeight)
-            .mask(Capsule())
             .shadow(radius: 0.5)
-        
             .overlay(button)
         
             .frame(width: baseWidth, height: baseHeight)
